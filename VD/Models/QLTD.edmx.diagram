@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="847481e5c74b49c2bcdf1d23ae3afddf" Name="Diagram1">
+        <EntityTypeShape EntityType="QLTDModel.CongViec" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.DiaDiem" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.LinhVuc" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.ND_Admin" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.NganhNghe" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.NhaTuyenDung" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.TaiKhoan" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.TinTuyenDung" Width="1.5" PointX="11.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.TinUngTuyen" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.UngTuyen" Width="1.5" PointX="13.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTDModel.UngVien" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="QLTDModel.FK__CongViec__ID_Adm__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__CongViec__ID_DD__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__CongViec__ID_LV__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__CongViec__ID_NN__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__CongViec__ID_NTD__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinTuyenD__ID_CV__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__UngTuyen__ID_CV__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinUngTuy__ID_DD__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__UngVien__ID_DD__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__NganhNghe__ID_LV__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinUngTuy__ID_LV__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__ND_Admin__ID_TK__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TaiKhoan__ID_Adm__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinTuyenD__ID_Ad__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinUngTuy__ID_Ad__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinUngTuy__ID_NN__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__NhaTuyenD__ID_TK__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinTuyenD__ID_NT__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__UngVien__ID_TK__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__TinUngTuy__ID_UV__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.FK__UngTuyen__ID_UV__7A672E12" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.O" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.Thuoc" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTDModel.Tim" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
