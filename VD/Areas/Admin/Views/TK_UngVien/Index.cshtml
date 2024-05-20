@@ -55,6 +55,7 @@
                         <th>Tên đăng nhập</th>
                         <th>Mật khẩu</th>
                         <th>Ngày tạo</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +71,7 @@
                                 <td>@taiKhoan.MK</td>
                                 <td>@taiKhoan.NgayTao</td>
                                 <td>
-                                   @*<a href="/admin/QLDiaDiem/edit/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Sửa</a>*@
+                                   <a href="/admin/TK_UngVien/ChiTietTK/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Chi tiết</a>
                                     <a href="#" data-id="@taiKhoan.ID_TK" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>

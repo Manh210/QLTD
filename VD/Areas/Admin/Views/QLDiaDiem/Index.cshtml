@@ -53,6 +53,7 @@
                         <th>STT</th>
                         <th>Tên địa điểm</th>
                         <th>Cấp</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +63,7 @@
                         foreach (var diaDiem in Model)
                         {
                             <tr id="trow_@diaDiem.ID_DD">
-                                <td>@i@*@diaDiem.ID_DD*@</td>
+                                <td>@i</td>
                                 <td>@diaDiem.TenDD</td>
                                 <td>@diaDiem.CapDD</td>
                                 <td>

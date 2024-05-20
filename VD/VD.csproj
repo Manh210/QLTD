@@ -173,11 +173,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\QLDiaDiemController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLLinhVucController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLNganhNgheController.cs" />
     <Compile Include="Areas\Admin\Controllers\TK_NhaTuyenDungController.cs" />
     <Compile Include="Areas\Admin\Controllers\TK_UngVienController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QLCVController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2363,6 +2366,14 @@
     <Content Include="Areas\Admin\Views\QLDiaDiem\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TK_UngVien\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TK_NhaTuyenDung\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TK_UngVien\ChiTietTK.cshtml" />
+    <Content Include="Areas\Admin\Views\TK_NhaTuyenDung\ChiTietTK_NTD.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLinhVuc\Home_LinhVuc.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLinhVuc\Edit_LV.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLinhVuc\Add_LV.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNganhNghe\Home_NN.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNganhNghe\Add_NN.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNganhNghe\Edit_NN.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2385,9 +2396,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_Home.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -2415,11 +2424,16 @@
     <Content Include="Views\Shared\_MainPage.cshtml" />
     <Content Include="Views\Home\MainPage.cshtml" />
     <Content Include="Views\Home\DoiUV.cshtml" />
+    <Content Include="Views\Home\DoiNTD.cshtml" />
+    <Content Include="Views\Shared\_MainPageNTD.cshtml" />
+    <Content Include="Views\QLCV\Index_CV.cshtml" />
+    <Content Include="Views\Home\MainPage_NTD.cshtml" />
+    <Content Include="Views\QLCV\Add_CV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\TK_NTD\" />
+    <Folder Include="Areas\Admin\Views\Default\" />
     <Folder Include="CV\" />
     <Folder Include="SYLL\" />
   </ItemGroup>

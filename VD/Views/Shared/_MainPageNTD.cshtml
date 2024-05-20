@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Home Page UV";
+    ViewBag.Title = "Home Page NTD";
 }
 
 <!DOCTYPE html>
@@ -23,22 +23,27 @@
             list-style-type: none;
             padding: 0;
         }
+
             .top_nav_menu li {
                 display: inline-block;
                 position: relative;
             }
+
                 .top_nav_menu li ul {
                     display: none;
                     position: absolute;
                     top: 100%;
                     left: 0;
                 }
+
                 .top_nav_menu li:hover > ul {
                     display: block;
                 }
+
                 .top_nav_menu li ul li {
                     white-space: nowrap; /* Ngăn chữ bị xuống dòng */
                 }
+
         .account,
         .currency {
             width: 35%; /* Đặt chiều rộng 20% */
@@ -46,7 +51,9 @@
     </style>
 </head>
 <body>
-    @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;}
+    @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;
+        var nhaTuyenDung = Session["NhaTuyenDung"] as VD.Models.NhaTuyenDung;
+        }
     <div class="super_container">
         <!-- Header -->
         <header class="header trans_300">
@@ -62,12 +69,12 @@
                                 <ul class="top_nav_menu">
                                     <!-- Currency / Language / My Account -->
                                     <li class="account">
-                                            <a href="#">
-                                                Xin chào: @taiKhoan.TenDN
+                                        <a href="#">
+                                            Xin chào: @taiKhoan.TenDN
                                             <i class="fa fa-angle-down"></i>
-                                            </a>
+                                        </a>
                                         <ul class="account_selection">
-                                            <li>@Html.ActionLink("Đổi thông tin", "DoiUV", "Home", new { id = taiKhoan.ID_TK, area = "" }, new { @class = "nav-link" })</li>
+                                            <li>@Html.ActionLink("Đổi thông tin", "DoiNTD", "Home", new { id = taiKhoan.ID_TK, area = "" }, new { @class = "nav-link" })</li>
                                             <li>@Html.ActionLink("Đăng xuất", "Index_Home", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                                         </ul>
                                     </li>
@@ -83,12 +90,12 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo_container">
-                                <a href="~/Home/MainPage">KM<span>JOB</span></a>
+                                <a href="~/Home/MainPage_NTD">KM<span>JOB</span></a>
                             </div>
                             <nav class="navbar">
                                 <ul class="navbar_menu">
-                                    <li><a href="~/Home/MainPage">Trang chủ</a></li>
-                                    <li><a href="#">Về chúng tôi</a></li>
+                                    <li><a href="~/Home/MainPage_NTD">Trang chủ</a></li>
+                                    <li><a href="~/QLCV/Index_CV/@taiKhoan.ID_TK">Quản lý công việc</a></li>
                                     <li><a href="contact.html">contact</a></li>
                                 </ul>
                                 <div class="hamburger_container">
