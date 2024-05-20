@@ -1,6 +1,6 @@
-﻿@model List<VD.Models.TaiKhoan>
+﻿@model List<VD.Models.LinhVuc>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home_LinhVuc";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,10 +10,10 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/Admin/Home" class="nav-link">Trang chủ</a>
+            <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/Admin/TK_NhaTuyenDung" class="nav-link">Quản lý tài khoản nhà tuyển dụng</a>
+            <a href="/admin/QLLinhVuc/Home_LinhVuc" class="nav-link">Quản lý lĩnh vực</a>
         </li>
     </ul>
 }
@@ -22,14 +22,8 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản lý tài khoản nhà tuyển dụng</h1>
+                <h1>Quản lý lĩnh vực</h1>
             </div>
-            @*<div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Quản lý địa điểm</li>
-                    </ol>
-                </div>*@
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -40,21 +34,19 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách tài khoản nhà tuyển dụng</h3>
+            <h3 class="card-title">Danh sách lĩnh vực</h3>
 
             <div class="card-tools">
-                @*<a href="/admin/TK_UngVien/add" class="btn btn-primary">Thêm mới</a>*@
+                <a href="/admin/QLLinhVuc/add_LV" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Số thứ tự</th>
-                        <th>ID</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Mật khẩu</th>
-                        <th>Ngày tạo</th>
+                        <th>STT</th>
+                        <th>Tên lĩnh vực</th>
+                        <th>Mô tả</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -62,17 +54,15 @@
                     @if (Model != null && Model.Any())
                     {
                         var i = 1;
-                        foreach (var taiKhoan in Model)
+                        foreach (var linhVuc in Model)
                         {
-                            <tr id="trow_@taiKhoan.ID_TK">
+                            <tr id="trow_@linhVuc.ID_LV">
                                 <td>@i</td>
-                                <td>@taiKhoan.ID_TK</td>
-                                <td>@taiKhoan.TenDN</td>
-                                <td>@taiKhoan.MK</td>
-                                <td>@taiKhoan.NgayTao</td>
+                                <td>@linhVuc.TenLV</td>
+                                <td>@linhVuc.MotaLV</td>
                                 <td>
-                                    <a href="/admin/TK_NhaTuyenDung/ChiTietTK_NTD/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Chi tiết</a>
-                                    <a href="#" data-id="@taiKhoan.ID_TK" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    <a href="/admin/QLLinhVuc/edit_LV/@linhVuc.ID_LV" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="#" data-id="@linhVuc.ID_LV" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
                             i++;
@@ -104,10 +94,10 @@
             $(document).ready(function () {
                 $('body').on('click', '.btnDelete', function () {
                     var id = $(this).data("id")
-                    var conf = confirm('Bạn có muốn xóa tài khoản này không?');
+                    var conf = confirm('Bạn có muốn xóa bản ghi này không?');
                     if (conf == true) {
                         $.ajax({
-                            url: '/Admin/TK_NhaTuyenDung/Delete',
+                            url: '/Admin/QLLinhVuc/Delete_LV',
                             type: 'POST',
                             data: { id: id },
                             success: function (rs) {
@@ -121,6 +111,3 @@
             });
     </script>
 }
-
-
-

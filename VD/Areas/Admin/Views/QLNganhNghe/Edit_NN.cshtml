@@ -1,6 +1,6 @@
-﻿@model VD.Models.DiaDiem
+﻿@model VD.Models.NganhNghe
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit_NN";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/QLDiaDiem" class="nav-link">Quản lý địa điểm</a>
+            <a href="/admin/QLNganhNghe/Home_NN" class="nav-link">Quản lý ngành nghề</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Cập nhật</a>
@@ -25,14 +25,8 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Cập nhật địa điểm</h1>
+                <h1>Cập nhật ngành nghề</h1>
             </div>
-            @*<div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Quản lý địa điểm</li>
-                    </ol>
-                </div>*@
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -43,35 +37,35 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Cập nhật thông tin địa điểm</h3>
-
-            <div class="card-tools">
-                @*<a href="/admin/QLDiaDiem/add" class="btn btn-primary">Thêm mới</a>*@
-            </div>
+            <h3 class="card-title">Cập nhật thông tin ngành nghề</h3>
         </div>
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Edit", "QLDiaDiem", FormMethod.Post))
+                @using (Html.BeginForm("Edit_NN", "QLNganhNghe", FormMethod.Post))
                 {
-                    @Html.HiddenFor(model=>model.ID_DD)
+                    @Html.HiddenFor(model => model.ID_NN)
                     <!-- your steps content here -->
                 <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tên địa điểm</label>
-                        <input type="text" class="form-control" id="TenDD" name="TenDD" value="@Model.TenDD" required>
+                        <label for="exampleInputEmail1">Tên ngành nghề</label>
+                        <input type="text" class="form-control" id="TenNN" name="TenNN" value="@Model.TenNN" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Cấp</label>
-                        @*<input type="text" class="form-control" id="CapDD" name="CapDD" placeholder="Cấp">*@
-                        <select class="form-control" id="CapDD" name="CapDD" required>
-                            <option value="@Model.CapDD" selected>@Model.CapDD</option>
-                            <option value="Tỉnh">Tỉnh</option>
-                            <option value="Thành phố">Thành phố</option>
-                            <option value="Quận">Quận</option>
-                        </select>
-                    </div>    
+                        <label for="exampleInputPassword1">Mô tả</label>
+                        <input type="text" class="form-control" id="MoTaNN" name="MoTaNN" value="@Model.MoTaNN">
+                    </div>
                     <div class="form-group">
-                        <a href="/Admin/QLDiaDiem/index" class="btn btn-danger">Quay lại</a>
+                        <label for="ID_LV">Lĩnh vực</label>
+                        <select class="form-control" id="ID_LV" name="ID_LV" required>
+                            <option value="">Chọn lĩnh vực</option>
+                            @foreach (var lv in ViewBag.LinhVucs)
+                            {
+                                <option value="@lv.ID_LV" @Html.Raw(lv.ID_LV == Model.ID_LV ? "selected":"") >@lv.TenLV</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <a href="/Admin/QLNganhNghe/Home_NN" class="btn btn-danger">Quay lại</a>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </div>

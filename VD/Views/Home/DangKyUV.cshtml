@@ -1,66 +1,4 @@
-﻿@*@model VD.Models.UngVien
-
-@{
-    ViewBag.Title = "DangKyUV";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}*@
-
-@*<h2>Đăng ký ứng viên mới</h2>*@
-
-@*@using (Html.BeginForm("DangKyUV", "Home", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.HoTen)
-        @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SDT)
-        @Html.TextBoxFor(model => model.SDT, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DOB)
-        @Html.TextBoxFor(model => model.DOB, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.GioiTinh)
-        @Html.TextBoxFor(model => model.GioiTinh, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email)
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SYLL)
-        @Html.TextBoxFor(model => model.SYLL, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CV)
-        @Html.TextBoxFor(model => model.CV, new { @class = "form-control" })
-    </div>-->
-<!-- Đây là phần nhập thông tin tài khoản (đăng nhập) -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaiKhoan.TenDN)
-        @Html.TextBox("tenDangNhap", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaiKhoan.MK)
-        @Html.Password("matKhau", null, new { @class = "form-control" })
-    </div>
-
-    <button type="submit" class="btn btn-primary">Đăng ký</button>
-}*@
-
-
-@model VD.Models.UngVien
+﻿@model VD.Models.UngVien
 @{
     ViewBag.Title = "DangKyUV";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -113,6 +51,7 @@
                 <div class="form-group">
                     <label for="gender">Giới tính:</label>
                     <select class="form-control" id="GioiTinh" name="GioiTinh" required>
+                        <option value="">Chọn giới tính</option>
                         <option value="Nam">Nam</option>
                         <option value="Nữ">Nữ</option>
                     </select>
@@ -142,6 +81,16 @@
                     <input type="file" class="form-control-file" id="syll" name="syll" accept=".pdf,.doc,.docx" @*required*@>
                     @*@Html.LabelFor(model => model.SYLL)
                     @Html.TextBoxFor(model => model.SYLL, new { @class = "form-control" })*@
+                </div>
+                <div class="form-group">
+                    <label for="ID_DD">Địa điểm</label>
+                    <select class="form-control" id="ID_DD" name="ID_DD" required>
+                        <option value="">Chọn địa điểm</option>
+                        @foreach (var dd in ViewBag.DiaDiems)
+                        {
+                            <option value="@dd.ID_DD">@dd.TenDD</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
