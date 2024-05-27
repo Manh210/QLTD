@@ -40,8 +40,16 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách tài khoản nhà tuyển dụng</h3>
+            <form method="get" action="@Url.Action("Index", "TK_NhaTuyenDung")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timTK_NTD" class="form-control" placeholder="Tìm kiếm tài khoản nhà tuyển dụng" value="@Request.QueryString["timTK_NTD"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
 
+            <h3 class="card-title">Danh sách tài khoản nhà tuyển dụng</h3>
             <div class="card-tools">
                 @*<a href="/admin/TK_UngVien/add" class="btn btn-primary">Thêm mới</a>*@
             </div>
@@ -55,6 +63,7 @@
                         <th>Tên đăng nhập</th>
                         <th>Mật khẩu</th>
                         <th>Ngày tạo</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +79,7 @@
                                 <td>@taiKhoan.MK</td>
                                 <td>@taiKhoan.NgayTao</td>
                                 <td>
-                                    @*<a href="/admin/QLDiaDiem/edit/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Sửa</a>*@
+                                    <a href="/admin/TK_NhaTuyenDung/ChiTietTK_NTD/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Chi tiết</a>
                                     <a href="#" data-id="@taiKhoan.ID_TK" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -100,24 +109,24 @@
 @section scripts
     {
     <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id")
-                    var conf = confirm('Bạn có muốn xóa tài khoản này không?');
-                    if (conf == true) {
-                        $.ajax({
-                            url: '/Admin/TK_NhaTuyenDung/Delete',
-                            type: 'POST',
-                            data: { id: id },
-                            success: function (rs) {
-                                if (rs.success) {
-                                    $('#trow_' + id).remove();
-                                }
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id")
+                var conf = confirm('Bạn có muốn xóa tài khoản này không?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/Admin/TK_NhaTuyenDung/Delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
+        });
     </script>
 }
 

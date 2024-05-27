@@ -1,0 +1,94 @@
+﻿@model List<VD.Models.CongViec>
+@{
+    ViewBag.Title = "Index_CV";
+    Layout = "~/Views/Shared/_MainPageNTD.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý công việc</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Danh sách công việc</h3>
+
+            <div class="card-tools">
+                @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;
+                    var nhaTuyenDung = Session["NhaTuyenDung"] as VD.Models.NhaTuyenDung;
+                }
+                <a href="/QLCV/Add_CV/@taiKhoan.ID_TK" class="btn btn-primary">Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="get" action="@Url.Action("Index_CV", "QLCV")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timCV" class="form-control" placeholder="Tìm kiếm công việc" value="@Request.QueryString["timCV"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên công việc</th>
+                        <th>Mô tả</th>
+                        <th>Loại việc</th>
+                        <th>Ngành nghề</th>
+                        <th>Lĩnh vực</th>
+                        <th>Địa điểm</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = 1;
+                        foreach (var congViec in Model)
+                        {
+                            <tr id="trow_@congViec.ID_CV">
+                                <td>@i</td>
+                                <td>@congViec.TenCV</td>
+                                <td>@congViec.MoTaCV</td>
+                                <td>@congViec.LoaiViec</td>
+                                <td>@congViec.NganhNghe.TenNN</td>
+                                <td>@congViec.LinhVuc.TenLV</td>
+                                <td>@congViec.DiaDiem.TenDD</td>
+                                <td>
+                                    <a href="/QLCV/Edit_CV/@congViec.ID_CV" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="#" data-id="@congViec.ID_CV" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3">Không có dữ liệu.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->

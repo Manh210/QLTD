@@ -28,11 +28,11 @@
                 <h1>Thêm mới địa điểm</h1>
             </div>
             @*<div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Quản lý địa điểm</li>
-                </ol>
-            </div>*@
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Quản lý địa điểm</li>
+                    </ol>
+                </div>*@
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -54,34 +54,35 @@
                 @using (Html.BeginForm("Add", "QLDiaDiem", FormMethod.Post))
                 {
                     <!-- your steps content here -->
-                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tên địa điểm</label>
-                        <input type="text" class="form-control" id="TenDD" name="TenDD" placeholder="Địa điểm" required>
+                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên địa điểm</label>
+                            <input type="text" class="form-control" id="TenDD" name="TenDD" placeholder="Địa điểm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Cấp</label>
+                            @*<input type="text" class="form-control" id="CapDD" name="CapDD" placeholder="Cấp">*@
+                            <select class="form-control" id="CapDD" name="CapDD" required>
+                                <option value="">Chọn cấp</option>
+                                <option value="Tỉnh">Tỉnh</option>
+                                <option value="Thành phố">Thành phố</option>
+                                <option value="Quận">Quận</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <a href="/Admin/QLDiaDiem" class="btn btn-danger">Quay lại</a>
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Cấp</label>
-                        @*<input type="text" class="form-control" id="CapDD" name="CapDD" placeholder="Cấp">*@
-                        <select class="form-control" id="CapDD" name="CapDD" required>
-                            <option value="Tỉnh">Tỉnh</option>
-                            <option value="Thành phố">Thành phố</option>
-                            <option value="Quận">Quận</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <a href="/Admin/QLDiaDiem" class="btn btn-danger">Quay lại</a>
-                        <button type="submit" class="btn btn-primary">Thêm mới</button>
-                    </div>
-                </div>
                 }
             </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
+            <!-- /.card-body -->
+            <div class="card-footer">
 
+            </div>
+            <!-- /.card-footer-->
         </div>
-        <!-- /.card-footer-->
-        </div>
-    <!-- /.card -->
+        <!-- /.card -->
 
 </section>
 <!-- /.content -->

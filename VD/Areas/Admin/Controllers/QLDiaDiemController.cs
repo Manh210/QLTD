@@ -10,11 +10,19 @@ namespace VD.Areas.Admin.Controllers
 {
     public class QLDiaDiemController : Controller
     {
-        QLTDEntities db = new QLTDEntities();
+        private readonly QLTDEntities db;
+        public QLDiaDiemController()
+        {
+            db = new QLTDEntities();
+        }
         // GET: Admin/QLDiaDiem
-        public ActionResult Index()
+        public ActionResult Index(string timDD = null)
         {
             List<DiaDiem> diaDiems = db.DiaDiems.ToList();
+            if(!string.IsNullOrEmpty(timDD))
+            {
+                diaDiems = db.DiaDiems.Where(dd => dd.TenDD.Contains(timDD)).ToList();
+            }
             return View(diaDiems);
         }
         public ActionResult Add()
@@ -31,14 +39,14 @@ namespace VD.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var diaDiem = db.DiaDiems.Find(id);
-            return View(diaDiem);        
+            return View(diaDiem);
         }
         [HttpPost]
         public ActionResult Edit(DiaDiem diaDiem)
         {
             db.DiaDiems.Attach(diaDiem);
-            db.Entry(diaDiem).Property(model=>model.TenDD).IsModified = true;
-            db.Entry(diaDiem).Property(model=>model.CapDD).IsModified = true;
+            db.Entry(diaDiem).Property(model => model.TenDD).IsModified = true;
+            db.Entry(diaDiem).Property(model => model.CapDD).IsModified = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -46,13 +54,13 @@ namespace VD.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             var diaDiem = db.DiaDiems.Find(id);
-            if(diaDiem != null)
+            if (diaDiem != null)
             {
                 db.DiaDiems.Remove(diaDiem);
                 db.SaveChanges();
-                return Json(new { success=true });
+                return Json(new { success = true });
             }
-            return Json(new { success=false });
+            return Json(new { success = false });
         }
     }
 }
