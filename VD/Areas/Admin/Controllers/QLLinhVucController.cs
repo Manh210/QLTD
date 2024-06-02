@@ -15,9 +15,13 @@ namespace VD.Areas.Admin.Controllers
             db = new QLTDEntities();
         }
         // GET: Admin/QLLinhVuc
-        public ActionResult Home_LinhVuc()
+        public ActionResult Home_LinhVuc(string timLV = null)
         {
             List<LinhVuc> linhVucs = db.LinhVucs.ToList();
+            if (!string.IsNullOrEmpty(timLV))
+            {
+                linhVucs = db.LinhVucs.Where(dd => dd.TenLV.Contains(timLV)).ToList();
+            }
             return View(linhVucs);
         }
         public ActionResult Add_LV()

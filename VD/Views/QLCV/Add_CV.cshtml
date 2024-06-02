@@ -1,101 +1,102 @@
 ﻿@model VD.Models.CongViec
-@*@model VD.Models.ViewModel.CongViecViewModel*@
 @{
     ViewBag.Title = "Add_CV";
     Layout = "~/Views/Shared/_MainPageNTD.cshtml";
 }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Thêm mới công việc</h1>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin thêm mới công việc | Wavefire Coding</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/styles/style.css">
+    <style>
+        /* Your custom CSS styles here */
+
+        .box-container {
+            margin-left: 400px; /* Căn lề trái */
+            margin-right: 400px; /* Căn lề phải */
+            padding-top: 200px;
+        }
+    </style>
+</head>
 
 <!-- Main content -->
-<section class="content">
-
-    <!-- Default box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Thông tin thêm mới công việc</h3>
+<body>
+    <div class="main-wrap">
+        <div class="box-container ">
+            <h2 class="text-center mb-4">Thông tin thêm mới công việc</h2>
+            @using (Html.BeginForm("Add_CV", "QLCV", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label for="TenCV">Tên công việc</label>
+                    <input type="text" class="form-control" id="TenCV" name="TenCV" placeholder="công việc" required>
+                </div>
+                <div class="form-group">
+                    <label for="MoTaCV">Mô tả</label>
+                    <input type="text" class="form-control" id="MoTaCV" name="MoTaCV" placeholder="Mô tả">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="LoaiViec" name="LoaiViec" required>
+                        <option value="">Chọn loại việc</option>
+                        <option value="Part time">Part time</option>
+                        <option value="Full time">Full time</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ID_NN">Ngành nghề</label>
+                    <select class="form-control" id="ID_NN" name="ID_NN" required>
+                        <option value="">Chọn ngành nghề</option>
+                        @foreach (var nn in ViewBag.NganhNghes)
+                        {
+                            <option value="@nn.ID_NN">@nn.TenNN</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ID_LV">Lĩnh vực</label>
+                    <select class="form-control" id="ID_LV" name="ID_LV" required>
+                        <option value="">Chọn lĩnh vực</option>
+                        @foreach (var lv in ViewBag.LinhVucs)
+                        {
+                            <option value="@lv.ID_LV">@lv.TenLV</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ID_DD">Địa điểm</label>
+                    <select class="form-control" id="ID_DD" name="ID_DD" required>
+                        <option value="">Chọn địa điểm</option>
+                        @foreach (var dd in ViewBag.DiaDiems)
+                        {
+                            <option value="@dd.ID_DD">@dd.TenDD</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ID_NTD">Nhà tuyển dụng</label>
+                    <select class="form-control" id="ID_NTD" name="ID_NTD" required>
+                        <option value="">Chọn nhà tuyển dụng</option>
+                        @foreach (var lv in ViewBag.NhaTuyenDungs)
+                        {
+                            <option value="@lv.ID_NTD">@lv.TenNTD</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Thêm mới</button>
+                    @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;}
+                    <a href="/QlCV/Index_CV/@taiKhoan.ID_TK" class="btn btn-danger btn-block">Quay lại</a>
+                </div>
+            }
         </div>
-        <div class="card-body">
-            <div class="bs-stepper-content">
-                @using (Html.BeginForm("Add_CV", "QLCV", FormMethod.Post))
-                {
-                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                        <div class="form-group">
-                            <label for="TeCV">Tên công việc</label>
-                            <input type="text" class="form-control" id="TeCV" name="TeCV" placeholder="công việc" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="MoTaCV">Mô tả</label>
-                            <input type="text" class="form-control" id="MoTaCV" name="MoTaCV" placeholder="Mô tả">
-                        </div>
-                        <div class="form-group">
-                            <label for="LoaiViec">Loại việc</label>
-                            <input type="text" class="form-control" id="LoaiViec" name="LoaiViec" placeholder="Loại việc">
-                        </div>
-                        <div class="form-group">
-                            <label for="ID_NN">Ngành nghề</label>
-                            <select class="form-control" id="ID_NN" name="ID_NN" required>
-                                <option value="">Chọn ngành nghề</option>
-                                @foreach (var nn in ViewBag.NganhNghes)
-                                {
-                                    <option value="@nn.ID_NN">@nn.TenNN</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ID_LV">Lĩnh vực</label>
-                            <select class="form-control" id="ID_LV" name="ID_LV" required>
-                                <option value="">Chọn lĩnh vực</option>
-                                @foreach (var lv in ViewBag.LinhVucs)
-                                {
-                                    <option value="@lv.ID_LV">@lv.TenLV</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ID_DD">Địa điểm</label>
-                            <select class="form-control" id="ID_DD" name="ID_DD" required>
-                                <option value="">Chọn địa điểm</option>
-                                @foreach (var dd in ViewBag.DiaDiems)
-                                {
-                                    <option value="@dd.ID_DD">@dd.TenDD</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ID_NTD">Nhà tuyển dụng</label>
-                            <select class="form-control" id="ID_NTD" name="ID_NTD" required>
-                                <option value="">Chọn nhà tuyển dụng</option>
-                                @foreach (var lv in ViewBag.NhaTuyenDungs)
-                                {
-                                    <option value="@lv.ID_NTD">@lv.TenNTD</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;}
-                            <a href="/QlCV/Index_CV/@taiKhoan.ID_TK" class="btn btn-danger">Quay lại</a>
-                            <button type="submit" class="btn btn-primary">Thêm mới</button>
-                        </div>
-                    </div>
-                }
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-
-            </div>
-            <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
-
-</section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 <!-- /.content -->
+</html>
+

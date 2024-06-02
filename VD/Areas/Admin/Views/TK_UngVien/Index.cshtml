@@ -40,6 +40,14 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
+            <form method="get" action="@Url.Action("Index", "TK_UngVien")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timTK_UV" class="form-control" placeholder="Tìm kiếm tài khoản ứng viên" value="@Request.QueryString["timTK_UV"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
             <h3 class="card-title">Danh sách tài khoản ứng viên</h3>
 
             <div class="card-tools">
@@ -71,7 +79,7 @@
                                 <td>@taiKhoan.MK</td>
                                 <td>@taiKhoan.NgayTao</td>
                                 <td>
-                                   <a href="/admin/TK_UngVien/ChiTietTK/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Chi tiết</a>
+                                    <a href="/admin/TK_UngVien/ChiTietTK/@taiKhoan.ID_TK" class="btn btn-sm btn-primary">Chi tiết</a>
                                     <a href="#" data-id="@taiKhoan.ID_TK" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -101,24 +109,24 @@
 @section scripts
     {
     <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id")
-                    var conf = confirm('Bạn có muốn xóa tài khoản này không?');
-                    if (conf == true) {
-                        $.ajax({
-                            url: '/Admin/TK_UngVien/Delete',
-                            type: 'POST',
-                            data: { id: id },
-                            success: function (rs) {
-                                if (rs.success) {
-                                    $('#trow_' + id).remove();
-                                }
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id")
+                var conf = confirm('Bạn có muốn xóa tài khoản này không?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/Admin/TK_UngVien/Delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
+        });
     </script>
 }
 

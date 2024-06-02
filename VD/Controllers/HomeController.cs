@@ -24,7 +24,9 @@ namespace VD.Controllers
         }
         public ActionResult MainPage_NTD()
         {
-            return View();
+            var tinTuyenDungs = db.TinTuyenDungs.Where(ttd => ttd.TrangThaiTTD == "Xác nhận").ToList();
+            return View(tinTuyenDungs);
+            //return View();
         }
 
         public ActionResult DangKyNTD()
@@ -112,12 +114,12 @@ namespace VD.Controllers
             ungVien.ID_TK = taiKhoanId;
 
             //Xứ lý lưu file CV,SYLL
-            if(cv.ContentLength > 0)
+            if (cv.ContentLength > 0)
             {
                 string rootFolder = Server.MapPath("/CV/");
                 string pathFile = rootFolder + cv.FileName;
                 cv.SaveAs(pathFile);
-                ungVien.CV ="/CV/" + cv.FileName;
+                ungVien.CV = "/CV/" + cv.FileName;
             }
             if (syll.ContentLength > 0)
             {
@@ -126,7 +128,7 @@ namespace VD.Controllers
                 cv.SaveAs(pathFile);
                 ungVien.SYLL = "/SYLL/" + syll.FileName;
             }
-           // Thêm đối tượng NhaTuyenDung vào cơ sở dữ liệu
+            // Thêm đối tượng NhaTuyenDung vào cơ sở dữ liệu
             db.UngViens.Add(ungVien);
             ViewBag.DiaDiems = db.DiaDiems.ToList();
             db.SaveChanges();
@@ -151,31 +153,52 @@ namespace VD.Controllers
                 return View("DangNhapUV");
             }
         }
+        public ActionResult ChiTietUV(int id)
+        {
+            var ungVien = db.UngViens.FirstOrDefault(u => u.ID_TK == id);
+            if (ungVien == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ungVien);
+        }
         public ActionResult DoiUV(int id)
         {
             var ungVien = db.UngViens.Find(id);
             ViewBag.DiaDiems = db.DiaDiems.ToList();
+            ViewBag.UngViens = db.UngViens.ToList();
             return View(ungVien);
         }
         [HttpPost]
         public ActionResult DoiUV(UngVien ungVien)
         {
-             db.UngViens.Attach(ungVien);
-             db.Entry(ungVien).Property(model => model.HoTen).IsModified = true;
-             db.Entry(ungVien).Property(model => model.SDT).IsModified = true;
-             db.Entry(ungVien).Property(model => model.DOB).IsModified = true;
-             db.Entry(ungVien).Property(model => model.GioiTinh).IsModified = true;
-             db.Entry(ungVien).Property(model => model.Email).IsModified = true;
-             db.Entry(ungVien).Property(model => model.CV).IsModified = true;
-             db.Entry(ungVien).Property(model => model.SYLL).IsModified = true;
-             db.Entry(ungVien).Property(model => model.ID_DD).IsModified = true;
-             ViewBag.DiaDiems = db.DiaDiems.ToList();
-             db.SaveChanges();
-             return RedirectToAction("MainPage", "Home");
+            db.UngViens.Attach(ungVien);
+            db.Entry(ungVien).Property(model => model.HoTen).IsModified = true;
+            db.Entry(ungVien).Property(model => model.SDT).IsModified = true;
+            db.Entry(ungVien).Property(model => model.DOB).IsModified = true;
+            db.Entry(ungVien).Property(model => model.GioiTinh).IsModified = true;
+            db.Entry(ungVien).Property(model => model.Email).IsModified = true;
+            db.Entry(ungVien).Property(model => model.CV).IsModified = true;
+            db.Entry(ungVien).Property(model => model.SYLL).IsModified = true;
+            db.Entry(ungVien).Property(model => model.ID_DD).IsModified = true;
+            ViewBag.DiaDiems = db.DiaDiems.ToList();
+            ViewBag.UngViens = db.UngViens.ToList();
+            db.SaveChanges();
+            return RedirectToAction("MainPage", "Home");
+        }
+        public ActionResult ChiTietNTD(int id)
+        {
+            var nhaTuyenDung = db.NhaTuyenDungs.FirstOrDefault(u => u.ID_TK == id);
+            if (nhaTuyenDung == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nhaTuyenDung);
         }
         public ActionResult DoiNTD(int id)
         {
             var nhaTuyenDung = db.NhaTuyenDungs.Find(id);
+            ViewBag.NhaTuyenDungs = db.NhaTuyenDungs.ToList();
             return View(nhaTuyenDung);
         }
         [HttpPost]
@@ -186,6 +209,7 @@ namespace VD.Controllers
             db.Entry(nhaTuyenDung).Property(model => model.QuocGia).IsModified = true;
             db.Entry(nhaTuyenDung).Property(model => model.QuyMo).IsModified = true;
             db.Entry(nhaTuyenDung).Property(model => model.GPKD).IsModified = true;
+            ViewBag.NhaTuyenDungs = db.NhaTuyenDungs.ToList();
             db.SaveChanges();
             return RedirectToAction("MainPage_NTD", "Home");
         }

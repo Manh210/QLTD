@@ -1,6 +1,6 @@
 ﻿@model VD.Models.NganhNghe
 @{
-    ViewBag.Title = "Edit_NN";
+    ViewBag.Title = "Cập nhật ngành nghề";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
             <a href="/admin/QLNganhNghe/Home_NN" class="nav-link">Quản lý ngành nghề</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Cập nhật</a>
+            <a href="#" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Cập nhật ngành nghề</h1>
+                <h1>@ViewBag.Title</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -45,30 +45,30 @@
                 {
                     @Html.HiddenFor(model => model.ID_NN)
                     <!-- your steps content here -->
-                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tên ngành nghề</label>
-                        <input type="text" class="form-control" id="TenNN" name="TenNN" value="@Model.TenNN" required>
+                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên ngành nghề</label>
+                            <input type="text" class="form-control" id="TenNN" name="TenNN" value="@Model.TenNN" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mô tả</label>
+                            <input type="text" class="form-control" id="MoTaNN" name="MoTaNN" value="@Model.MoTaNN">
+                        </div>
+                        <div class="form-group">
+                            <label for="ID_LV">Lĩnh vực</label>
+                            <select class="form-control" id="ID_LV" name="ID_LV" required>
+                                <option value="">Chọn lĩnh vực</option>
+                                @foreach (var lv in ViewBag.LinhVucs)
+                                {
+                                    <option value="@lv.ID_LV" @Html.Raw(lv.ID_LV == Model.ID_LV ? "selected" : "")>@lv.TenLV</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <a href="/Admin/QLNganhNghe/Home_NN" class="btn btn-danger">Quay lại</a>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Mô tả</label>
-                        <input type="text" class="form-control" id="MoTaNN" name="MoTaNN" value="@Model.MoTaNN">
-                    </div>
-                    <div class="form-group">
-                        <label for="ID_LV">Lĩnh vực</label>
-                        <select class="form-control" id="ID_LV" name="ID_LV" required>
-                            <option value="">Chọn lĩnh vực</option>
-                            @foreach (var lv in ViewBag.LinhVucs)
-                            {
-                                <option value="@lv.ID_LV" @Html.Raw(lv.ID_LV == Model.ID_LV ? "selected":"") >@lv.TenLV</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <a href="/Admin/QLNganhNghe/Home_NN" class="btn btn-danger">Quay lại</a>
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    </div>
-                </div>
                 }
             </div>
             <!-- /.card-body -->

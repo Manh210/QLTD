@@ -21,17 +21,19 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Danh sách công việc</h3>
-
+            <form method="get" action="@Url.Action("Index_CV", "QLCV")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timCV" class="form-control" placeholder="Tìm kiếm công việc" value="@Request.QueryString["timCV"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
             <div class="card-tools">
-                @*@foreach (var congViec in Model)
-        {
-            <a href="/QLCV/Add_CV/@congViec.ID_NTD" class="btn btn-primary">Thêm mới</a>
-        }*@
-                @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;}
-                @foreach (var congViec in Model)
-                { 
-                    <a href="/QLCV/Add_CV/@taiKhoan.ID_TK" class="btn btn-primary">Thêm mới</a>
+                @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;
+                    var nhaTuyenDung = Session["NhaTuyenDung"] as VD.Models.NhaTuyenDung;
                 }
+                <a href="/QLCV/Add_CV/@taiKhoan.ID_TK" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">

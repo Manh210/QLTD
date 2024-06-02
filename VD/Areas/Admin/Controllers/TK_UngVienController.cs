@@ -16,13 +16,17 @@ namespace VD.Areas.Admin.Controllers
             db = new QLTDEntities();
         }
         // GET: Admin/TK_UngVien
-        public ActionResult Index()
+        public ActionResult Index(string timTK_UV = null)
         {
             List<TaiKhoan> taiKhoans = db.TaiKhoans.Where(t => db.UngViens.Any(u => u.ID_TK == t.ID_TK)).ToList();
+            if (!string.IsNullOrEmpty(timTK_UV))
+            {
+                taiKhoans = db.TaiKhoans.Where(dd => dd.TenDN.Contains(timTK_UV)).ToList();
+            }
             return View(taiKhoans);
         }
 
-        public ActionResult ChiTietTK(int id) 
+        public ActionResult ChiTietTK(int id)
         {
             var ungVien = db.UngViens.Include(nn => nn.DiaDiem).FirstOrDefault(u => u.ID_TK == id);
             if (ungVien == null)

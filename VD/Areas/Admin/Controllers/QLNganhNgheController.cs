@@ -16,9 +16,13 @@ namespace VD.Areas.Admin.Controllers
             db = new QLTDEntities();
         }
         // GET: Admin/QLNganhNghe
-        public ActionResult Home_NN()
+        public ActionResult Home_NN(string timNN = null)
         {
             var nganhNghes = db.NganhNghes.Include(nn => nn.LinhVuc).ToList();
+            if (!string.IsNullOrEmpty(timNN))
+            {
+                nganhNghes = db.NganhNghes.Where(dd => dd.TenNN.Contains(timNN)).ToList();
+            }
             return View(nganhNghes);
         }
         public ActionResult Add_NN()

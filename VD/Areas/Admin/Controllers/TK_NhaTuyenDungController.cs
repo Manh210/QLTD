@@ -11,9 +11,13 @@ namespace VD.Areas.Admin.Controllers
     {
         QLTDEntities db = new QLTDEntities();
         // GET: Admin/TK_NhaTuyenDung
-        public ActionResult Index()
+        public ActionResult Index(string timTK_NTD = null)
         {
             List<TaiKhoan> taiKhoans = db.TaiKhoans.Where(t => db.NhaTuyenDungs.Any(u => u.ID_TK == t.ID_TK)).ToList();
+            if (!string.IsNullOrEmpty(timTK_NTD))
+            {
+                taiKhoans = db.TaiKhoans.Where(dd => dd.TenDN.Contains(timTK_NTD)).ToList();
+            }
             return View(taiKhoans);
         }
         public ActionResult ChiTietTK_NTD(int id)

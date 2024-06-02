@@ -1,0 +1,90 @@
+﻿@model List<VD.Models.TinTuyenDung>
+@{
+    ViewBag.Title = "Quản lý tin tuyển dụng";
+    Layout = "~/Views/Shared/_MainPageNTD.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý TTD</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <form method="get" action="@Url.Action("Index_TTD", "TinTuyenDung")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timTTD" class="form-control" placeholder="Tìm kiếm tin tuyển dụng" value="@Request.QueryString["timTTD"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+            <h3 class="card-title">Danh sách tin tuyển dụng</h3>
+
+            <div class="card-tools">
+                @{ var taiKhoan = Session["TaiKhoan"] as VD.Models.TaiKhoan;
+                    var nhaTuyenDung = Session["NhaTuyenDung"] as VD.Models.NhaTuyenDung;
+                }
+                <a href="/TinTuyenDung/Add_TTD/@taiKhoan.ID_TK" class="btn btn-primary">Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Thời gian đăng</th>
+                        <th>Trạng thái</th>
+                        <th>Thời gian cập nhật trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = 1;
+                        foreach (var tinTuyenDung in Model)
+                        {
+                            <tr id="trow_@tinTuyenDung.ID_TTD">
+                                <td>@i</td>
+                                <td>@tinTuyenDung.TieuDe</td>
+                                <td>@tinTuyenDung.TgDang</td>
+                                <td>@tinTuyenDung.TrangThaiTTD</td>
+                                <td>@tinTuyenDung.TgianCapNhatTT</td>
+                                <td>
+                                    <a href="/TinTuyenDung/edit_TTD/@tinTuyenDung.ID_TTD" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="#" data-id="@tinTuyenDung.ID_TTD" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3">Không có dữ liệu.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->

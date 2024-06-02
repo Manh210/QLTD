@@ -34,6 +34,14 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
+            <form method="get" action="@Url.Action("Home_LinhVuc", "QLLinhVuc")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timLV" class="form-control" placeholder="Tìm kiếm lĩnh vực" value="@Request.QueryString["timLV"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
             <h3 class="card-title">Danh sách lĩnh vực</h3>
 
             <div class="card-tools">
@@ -91,23 +99,23 @@
 @section scripts
     {
     <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id")
-                    var conf = confirm('Bạn có muốn xóa bản ghi này không?');
-                    if (conf == true) {
-                        $.ajax({
-                            url: '/Admin/QLLinhVuc/Delete_LV',
-                            type: 'POST',
-                            data: { id: id },
-                            success: function (rs) {
-                                if (rs.success) {
-                                    $('#trow_' + id).remove();
-                                }
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id")
+                var conf = confirm('Bạn có muốn xóa bản ghi này không?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/Admin/QLLinhVuc/Delete_LV',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
+        });
     </script>
 }

@@ -16,7 +16,7 @@
             <a href="/admin/QLDiaDiem" class="nav-link">Quản lý địa điểm</a>
         </li>
     </ul>
-    }
+}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -25,11 +25,11 @@
                 <h1>Quản lý địa điểm</h1>
             </div>
             @*<div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Quản lý địa điểm</li>
-                </ol>
-            </div>*@
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Quản lý địa điểm</li>
+                    </ol>
+                </div>*@
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -40,6 +40,14 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
+            <form method="get" action="@Url.Action("Index", "QLDiaDiem")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timDD" class="form-control" placeholder="Tìm kiếm địa điểm" value="@Request.QueryString["timDD"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
             <h3 class="card-title">Danh sách địa điểm</h3>
 
             <div class="card-tools">
@@ -76,10 +84,10 @@
                     }
                     else
                     {
-                            <tr>
-                                <td colspan="3">Không có dữ liệu.</td>
-                            </tr>
-                        }
+                        <tr>
+                            <td colspan="3">Không có dữ liệu.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -96,24 +104,24 @@
 
 @section scripts
     {
-        <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id")
-                    var conf = confirm('Bạn có muốn xóa bản ghi này không?');
-                    if (conf == true) {
-                        $.ajax({
-                            url: '/Admin/QLDiaDiem/Delete',
-                            type: 'POST',
-                            data: { id: id },
-                            success: function (rs) {
-                                if (rs.success) {
-                                    $('#trow_' + id).remove();
-                                }
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id")
+                var conf = confirm('Bạn có muốn xóa bản ghi này không?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/Admin/QLDiaDiem/Delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
-        </script>
-    }
+        });
+    </script>
+}

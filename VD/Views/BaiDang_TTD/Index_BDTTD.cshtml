@@ -1,0 +1,66 @@
+﻿@model List<VD.Models.TinTuyenDung>
+
+@{
+    ViewBag.Title = "Tin tuyển dụng";
+    Layout = "~/Views/Shared/_MainPageNTD.cshtml";
+}
+<link type="text/css" href="~/Content/assets/styles/main_styles.css" rel="stylesheet" />
+<style>
+    .news_section_container {
+        margin-top: 180px;
+    }
+
+    .row-item-new {
+        margin-bottom: 20px;
+    }
+
+    .title-news {
+        font-size: 24px;
+        border-bottom: 1px solid;
+        padding: 15px 0;
+        margin-bottom: 25px;
+    }
+
+    .img-box img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+<div class="container news_section_container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title-news">@ViewBag.Title</h1>
+            <form method="get" action="@Url.Action("Index_BDTTD", "BaiDang_TTD")">
+                <div class="input-group mb-3">
+                    <input type="text" name="timTTD" class="form-control" placeholder="Tìm kiếm tin tuyển dụng" value="@Request.QueryString["timTTD"]">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var tinTuyenDung in Model.Where(ttd => ttd.TrangThaiTTD == "Xác nhận"))
+        {
+            <div class="row row-item-new">
+                <div class="col-md-3">
+                    <div class="img-box">
+                        <a href="" title="@tinTuyenDung.TieuDe">@*<img src="@item.Image" alt="@item.Title" />*@</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="content-box">
+                        <h3><a href="/@tinTuyenDung.ID_TTD" title="@tinTuyenDung.TieuDe">@tinTuyenDung.TieuDe</a></h3>
+                        <div class="description-box">
+                            @tinTuyenDung.YeuCau
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
